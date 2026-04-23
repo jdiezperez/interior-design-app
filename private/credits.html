@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits - InteriorAI</title>
+    <link href="../output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- i18next -->
+    <script src="https://unpkg.com/i18next@21.6.3/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@1.3.1/i18nextHttpBackend.min.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 font-sans antialiased">
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center">
+                        <img src="../logo.png" alt="InteriorAI Logo" class="h-8 w-auto">
+                    </a>
+                    <div class="hidden md:flex ml-10 space-x-8">
+                        <a href="/team.html" id="nav-team"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.team">Team</a>
+                        <a href="/projects.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.projects">Projects</a>
+                        <a href="/styles.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.styles">Styles</a>
+                        <a href="/furniture.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.furniture">Furniture</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Language Toggle -->
+                    <button id="language-toggle"
+                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition flex items-center">
+                        <span id="language-text"
+                            class="text-sm font-semibold text-gray-700 dark:text-gray-300">EN</span>
+                    </button>
+
+                    <!-- Credits Display -->
+                    <div
+                        class="hidden md:flex items-center px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-100 dark:border-indigo-800">
+                        <a href="/credits.html"
+                            class="text-sm font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-100"
+                            id="user-credits-link">
+                            <span class="text-xs font-medium text-indigo-600 dark:text-indigo-400 mr-1"
+                                data-i18n="nav.credits">Credits:</span>
+                            <span id="user-credits-display">0</span>
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="relative ml-3">
+                        <div>
+                            <button type="button"
+                                class="flex items-center bg-white dark:bg-gray-800 rounded-full focus:outline-none px-3 py-1"
+                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <span class="sr-only">Open user menu</span>
+                                <div class="flex flex-col items-start mr-2">
+                                    <span id="user-name-display"
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300">User</span>
+                                    <span id="user-role-display"
+                                        class="text-xs text-gray-500 dark:text-gray-400">Role</span>
+                                </div>
+                                <svg id="user-menu-caret"
+                                    class="h-4 w-4 text-gray-500 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="user-menu-dropdown"
+                            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            <a href="#profile-section"
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                role="menuitem" tabindex="-1" id="user-menu-item-0"
+                                data-i18n="nav.settings">Settings</a>
+                            <a href="/auth/logout"
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                role="menuitem" tabindex="-1" id="user-menu-item-1" data-i18n="nav.signout">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-8">
+                <div class="flex items-center">
+                    <div class="hidden md:flex ml-10">
+                        <a href="/dashboard.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.dashboard">Dashboard</a>
+                        <span
+                            class="text-gray-400 dark:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium">></span>
+                        <span class="text-gray-400 dark:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.credits">Credits</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
+            <div class="p-6 text-gray-900 dark:text-white">
+                <h1 class="text-3xl font-bold mb-6" data-i18n="credits.title">Credits Management</h1>
+
+                <!-- Current Credits Display -->
+                <div
+                    class="text-center from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 p-8 rounded-xl border border-indigo-100 dark:border-indigo-800 mb-8">
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-2" data-i18n="credits.available">Available
+                        Credits</p>
+                    <p class="text-6xl font-bold text-indigo-600 dark:text-indigo-400" id="current-credits">0</p>
+                </div>
+
+                <!-- Purchase Credits Section -->
+                <div class="text-center bg-gray-50 dark:bg-gray-700 p-6 rounded-lg max-w-md mx-auto">
+                    <h2 class="text-2xl font-bold mb-4" data-i18n="credits.purchase">Purchase Credits</h2>
+                    <form id="purchase-credits-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                                data-i18n="credits.amount">Amount</label>
+                            <input type="number" id="credit-amount" name="amount" min="1" step="1" value="100" required
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white px-4 py-2">
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 transition font-semibold"
+                            data-i18n="credits.buyButton">Buy Credits</button>
+                    </form>
+
+                    <!-- Success/Error Messages -->
+                    <div id="message-container" class="mt-4 hidden">
+                        <div id="message" class="p-4 rounded-md"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/credits.js"></script>
+</body>
+
+</html>

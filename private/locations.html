@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations - InteriorAI</title>
+    <link href="../output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- i18next -->
+    <script src="https://unpkg.com/i18next@21.6.3/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@1.3.1/i18nextHttpBackend.min.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 font-sans antialiased">
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center">
+                        <img src="../logo.png" alt="InteriorAI Logo" class="h-8 w-auto">
+                    </a>
+                    <div class="hidden md:flex ml-10 space-x-8">
+                        <a href="/team.html" id="nav-team"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.team">Team</a>
+                        <a href="/projects.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.projects">Projects</a>
+                        <a href="/styles.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.styles">Styles</a>
+                        <a href="/furniture.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.furniture">Furniture</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Language Toggle -->
+                    <button id="language-toggle"
+                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition flex items-center">
+                        <span id="language-text"
+                            class="text-sm font-semibold text-gray-700 dark:text-gray-300">EN</span>
+                    </button>
+
+                    <!-- Credits Display -->
+                    <div
+                        class="hidden md:flex items-center px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-100 dark:border-indigo-800">
+                        <a href="/credits.html"
+                            class="text-sm font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-100"
+                            id="user-credits-link">
+                            <span class="text-xs font-medium text-indigo-600 dark:text-indigo-400 mr-1"
+                                data-i18n="nav.credits">Credits:</span>
+                            <span id="user-credits-display">0</span>
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="relative ml-3">
+                        <div>
+                            <button type="button"
+                                class="flex items-center bg-white dark:bg-gray-800 rounded-full focus:outline-none px-3 py-1"
+                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <span class="sr-only">Open user menu</span>
+                                <div class="flex flex-col items-start mr-2">
+                                    <span id="user-name-display"
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300">User</span>
+                                    <span id="user-role-display"
+                                        class="text-xs text-gray-500 dark:text-gray-400">Role</span>
+                                </div>
+                                <svg id="user-menu-caret"
+                                    class="h-4 w-4 text-gray-500 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="user-menu-dropdown"
+                            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            <a href="#profile-section"
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                role="menuitem" tabindex="-1" id="user-menu-item-0"
+                                data-i18n="nav.settings">Settings</a>
+                            <a href="/auth/logout"
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                role="menuitem" tabindex="-1" id="user-menu-item-1" data-i18n="nav.signout">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-8">
+                <div class="flex items-center">
+                    <div class="hidden md:flex ml-10">
+                        <a href="/dashboard.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.dashboard">Dashboard</a>
+                        <span
+                            class="text-gray-400 dark:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium">></span>
+                        <a href="/team.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.team">Team</a>
+                        <span
+                            class="text-gray-400 dark:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium">></span>
+                        <span class="text-gray-400 dark:text-indigo-400 px-2 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.locations">Locations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white" data-i18n="locations.title">Locations</h1>
+            <button onclick="openAddLocationModal()"
+                class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition"
+                data-i18n="locations.addNewLocation">Add New Location</button>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gray-50 dark:bg-gray-900">
+                    <tr>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                            data-i18n="locations.name">
+                            Name</th>
+                        <th scope="col" class="relative px-6 py-3"></th>
+                    </tr>
+                </thead>
+                <tbody id="locations-list"
+                    class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add/Edit Location Modal -->
+    <div id="location-modal" class="fixed inset-0 z-10 hidden overflow-y-auto" aria-labelledby="modal-title"
+        role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
+                onclick="closeLocationModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white" id="modal-title"
+                        data-i18n="locations.addLocation">Add New
+                        Location</h3>
+                    <form id="location-form" class="mt-4 space-y-4">
+                        <input type="hidden" name="id" id="location-id">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                data-i18n="locations.name">Name</label>
+                            <input type="text" name="name" id="location-name" required
+                                class="mt-1 p-4 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        </div>
+                    </form>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="submitLocationForm()"
+                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+                        data-i18n="locations.save">Save
+                    </button>
+                    <button type="button" onclick="closeLocationModal()"
+                        class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        data-i18n="locations.cancel">Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/locations.js"></script>
+</body>
+
+</html>

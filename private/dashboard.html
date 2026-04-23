@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - InteriorAI</title>
+    <link href="../output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- i18next -->
+    <script src="https://unpkg.com/i18next@21.6.3/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@1.3.1/i18nextHttpBackend.min.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 font-sans antialiased">
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center">
+                        <img src="../logo.png" alt="InteriorAI Logo" class="h-8 w-auto">
+                    </a>
+                    <div class="hidden md:flex ml-10 space-x-8">
+                        <a href="/team.html" id="nav-team"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.team">Team</a>
+                        <a href="/projects.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.projects">Projects</a>
+                        <a href="/styles.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.styles">Styles</a>
+                        <a href="/furniture.html"
+                            class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                            data-i18n="nav.furniture">Furniture</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Language Toggle -->
+                    <button id="language-toggle"
+                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition flex items-center">
+                        <span id="language-text"
+                            class="text-sm font-semibold text-gray-700 dark:text-gray-300">EN</span>
+                    </button>
+
+                    <!-- Credits Display -->
+                    <div
+                        class="hidden md:flex items-center px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-100 dark:border-indigo-800">
+                        <a href="/credits.html"
+                            class="text-sm font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-100"
+                            id="user-credits-link">
+                            <span class="text-xs font-medium text-indigo-600 dark:text-indigo-400 mr-1"
+                                data-i18n="nav.credits">Credits:</span>
+                            <span id="user-credits-display">0</span>
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="relative ml-3">
+                        <div>
+                            <button type="button"
+                                class="flex items-center bg-white dark:bg-gray-800 rounded-full focus:outline-none px-3 py-1"
+                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <span class="sr-only">Open user menu</span>
+                                <div class="flex flex-col items-start mr-2">
+                                    <span id="user-name-display"
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300">User</span>
+                                    <span id="user-role-display"
+                                        class="text-xs text-gray-500 dark:text-gray-400">Role</span>
+                                </div>
+                                <svg id="user-menu-caret"
+                                    class="h-4 w-4 text-gray-500 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="user-menu-dropdown"
+                            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            <a href="#profile-section"
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                role="menuitem" tabindex="-1" id="user-menu-item-0"
+                                data-i18n="nav.settings">Settings</a>
+                            <a href="/auth/logout"
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                role="menuitem" tabindex="-1" id="user-menu-item-1" data-i18n="nav.signout">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
+            <div class="p-6 text-gray-900 dark:text-white">
+                <div class="flex justify-between items-center mb-4">
+                    <h1 class="text-3xl font-bold" data-i18n="dashboard.title">Dashboard</h1>
+                </div>
+                <p class="text-lg text-gray-600 dark:text-gray-400" data-i18n="dashboard.welcome">
+                    Welcome to your
+                    private dashboard! Here you can
+                    manage your designs and account settings.</p>
+
+                <!-- Team Management Section (Main User Only) -->
+                <div id="team-section" class="mt-8 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white"
+                            data-i18n="dashboard.teamManagement">Team Management</h2>
+                    </div>
+
+                    <!-- Team List -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Name</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Email</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Location</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Credits</th>
+                                    <th
+                                        class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="team-list"
+                                class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                <!-- Members will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="/team.html"
+                            class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition"
+                            data-i18n="dashboard.seeAll">See All Team Members</a>
+                    </div>
+                </div>
+
+                <!-- Profile Section (All Users) -->
+                <div id="profile-section" class="mt-8 hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4" data-i18n="dashboard.myProfile">My
+                        Profile</h2>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg max-w-md">
+                        <h3 class="text-lg font-semibold mb-4" data-i18n="dashboard.changePassword">Change Password</h3>
+                        <form id="change-password-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    data-i18n="dashboard.currentPassword">Current
+                                    Password</label>
+                                <input type="password" name="currentPassword" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    data-i18n="dashboard.newPassword">New
+                                    Password</label>
+                                <input type="password" name="newPassword" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    data-i18n="dashboard.confirmNewPassword">Confirm
+                                    New Password</label>
+                                <input type="password" name="confirmPassword" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white">
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition"
+                                data-i18n="dashboard.updatePassword">Update
+                                Password</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="bg-indigo-50 dark:bg-indigo-900/20 p-6 rounded-xl border border-indigo-100 dark:border-indigo-800">
+                        <h3 class="text-xl font-semibold text-indigo-900 dark:text-indigo-100 mb-2"
+                            data-i18n="dashboard.myDesigns.title">My Designs</h3>
+                        <p class="text-indigo-700 dark:text-indigo-300" data-i18n="dashboard.myDesigns.desc">View and
+                            edit your saved room designs.</p>
+                    </div>
+                    <div
+                        class="bg-emerald-50 dark:bg-emerald-900/20 p-6 rounded-xl border border-emerald-100 dark:border-emerald-800">
+                        <h3 class="text-xl font-semibold text-emerald-900 dark:text-emerald-100 mb-2"
+                            data-i18n="dashboard.newProject.title">New Project</h3>
+                        <p class="text-emerald-700 dark:text-emerald-300" data-i18n="dashboard.newProject.desc">Start a
+                            new interior design project.</p>
+                    </div>
+                    <div
+                        class="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-100 dark:border-purple-800">
+                        <h3 class="text-xl font-semibold text-purple-900 dark:text-purple-100 mb-2"
+                            data-i18n="dashboard.settings.title">Settings</h3>
+                        <p class="text-purple-700 dark:text-purple-300" data-i18n="dashboard.settings.desc">Update your
+                            profile and preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
